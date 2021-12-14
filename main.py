@@ -9,7 +9,7 @@ body1.add_velocity(np.array([[40, 0, 0]]))
 body2 = Body(np.array([[600, 200, 0]]), 6 * pow(10, 15), (0, 255, 0))
 body2.add_velocity(np.array([[-40, 0, 0]]))
 
-body3 = Body(np.array([[500, 500, 0]]), 6 * pow(10, 15), (255, 0, 0))
+body3 = Body(np.array([[300, 500, 0]]), 6 * pow(10, 15), (255, 0, 0))
 body3.add_velocity(np.array([[50, 0, 0]]))
 
 sim = Simulation()
