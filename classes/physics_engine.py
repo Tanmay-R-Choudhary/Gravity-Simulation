@@ -21,8 +21,8 @@ class PhysicsEngine:
         self.body_pos_array = np.array([]).reshape((0, 3))
         self.body_list = None
 
-    def define_bodies(self, *args):
-        self.body_list = [np.array([i, body]) for i, body in enumerate(args[0])]
+    def define_bodies(self, body_list):
+        self.body_list = [np.array([i, body]) for i, body in enumerate(body_list)]
 
     def compute_force_vectors(self):
         distance_list = []
@@ -45,7 +45,7 @@ class PhysicsEngine:
             for secondary_body in self.body_list:
                 if _magnitude(distance_list[primary_body[0]][secondary_body[0]]) != 0:
                     force = 6.67 * pow(10, -11) * primary_body[1].mass * secondary_body[1].mass * (
-                            1 / pow(_magnitude(distance_list[primary_body[0]][secondary_body[0]]) * 0.25, 2))
+                            1 / pow(_magnitude(distance_list[primary_body[0]][secondary_body[0]]), 2))  # *0.25
                     force = force * _unit_vector(distance_list[primary_body[0]][secondary_body[0]])
                     temp = np.append(
                         temp,
@@ -60,6 +60,16 @@ class PhysicsEngine:
                     )
             force_list.append(temp)
             temp = np.array([]).reshape((0, 3))
+
+        for primary_body in self.body_list:
+            for secondary_body in self.body_list:
+                if (primary_body[0] != secondary_body[0]) and (_magnitude(distance_list[primary_body[0]][secondary_body[0]]) <= 5):
+                    force_list[primary_body[0]][secondary_body[0]] = np.array([[0, 0, 0]])
+                    primary_body[1].in_contact = True
+                    secondary_body[1].in_contact = True
+                else:
+                    primary_body[1].in_contact = False
+                    secondary_body[1].in_contact = False
 
         # print(force_list)
         for obj in force_list:

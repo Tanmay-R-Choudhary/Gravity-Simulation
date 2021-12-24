@@ -1,5 +1,4 @@
 import pygame
-import numpy as np
 import time
 from src.classes.physics_engine import PhysicsEngine
 
@@ -10,8 +9,8 @@ class Simulation:
     def __init__(self):
         self.run, self.space, self.bodies = None, None, None
 
-    def initialise_environment(self, *args):
-        self.bodies = [i for i in args]
+    def initialise_environment(self, body_list):
+        self.bodies = body_list
         space_plane_size = (1000, 800)  # width, height of canvas
         self.run = True
 
@@ -21,7 +20,7 @@ class Simulation:
         self.space = pygame.display.set_mode(space_plane_size)
 
         # setting up physics engine
-        self.physics_engine.define_bodies(args)
+        self.physics_engine.define_bodies(body_list)
 
     def show_environment(self):
         while self.run:
@@ -42,5 +41,6 @@ class Simulation:
                 body.move()
                 # print(body.velocity)
                 # print(body.position)
-            time.sleep(0.0005)
+            time.sleep(0.001)
             pygame.display.update()
+            # self.run = False
