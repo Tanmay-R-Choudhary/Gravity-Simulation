@@ -41,6 +41,6 @@ class Simulation:
                 body.move()
                 # print(body.velocity)
                 # print(body.position)
-            time.sleep(0.001)
+            time.sleep(0.0005)
             pygame.display.update()
             # self.run = False
