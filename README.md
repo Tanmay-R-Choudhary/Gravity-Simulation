@@ -22,7 +22,7 @@ body3 = Body(np.array([[500, 500, 0]]), 6 * pow(10, 15), (255, 0, 0))
 body3.add_velocity(np.array([[50, 0, 0]]))
 
 sim = Simulation()
-sim.initialise_environment(body1, body2, body3)
+sim.initialise_environment([body1, body2, body3])
 sim.show_environment()
 ```
 
