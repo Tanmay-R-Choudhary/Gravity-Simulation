@@ -3,7 +3,7 @@ A project which can be used to see how the position of bodies change in space ba
 
 The project uses pygame to setup an environment and numpy for caculation. Although, I have made the calculations in such a way so that it includes the z-axis too, since pygame has only 2d functionality, all the values in that axis are 0.
 
-For the example, let's assume "src" is the parent directory of these files.
+For the demo, let's assume "src" is the parent directory of these files.
 
 ## Example Code
 
